@@ -1,0 +1,35 @@
+{
+  // Usar SIEMPRE latexmk: encadena pdflatex -> bibtex -> pdflatex -> pdflatex
+  // automaticamente, resolviendo citas y referencias en una sola pulsacion.
+  "latex-workshop.latex.recipe.default": "latexmk (rc)",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ],
+      "env": {}
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (rc)",
+      "tools": ["latexmk"]
+    }
+  ],
+  // El documento raiz, sin importar que archivo tengas abierto (5_res.tex, etc.)
+  "latex-workshop.latex.rootFile": "article_main.tex",
+
+  // No borrar auxiliares automaticamente entre builds: dejar que latexmk
+  // reutilice .aux/.bbl es justamente lo que evita el "compilar 2 veces".
+  "latex-workshop.latex.autoClean.run": "never",
+  "latex-workshop.latex.clean.subfolder.enabled": false,
+
+  // Reconstruir al guardar (Ctrl+S). Cambia a "never" si prefieres solo Ctrl+Alt+B.
+  "latex-workshop.latex.autoBuild.run": "onSave"
+}

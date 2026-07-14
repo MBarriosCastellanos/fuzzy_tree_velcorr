@@ -1,10 +1,10 @@
 \subsection{Decision trees as rule generators}
 
-A classification tree partitions the input space with axis-aligned thresholds and assigns one class to each terminal region \cite{breiman1984cart}. Each root-to-leaf path is a conjunction of interpretable conditions, so a trained tree is simultaneously a classifier and a rule generator. For imbalanced classes, accuracy rewards the majority class; the per-class recall (the fraction of each class recovered) and the recall ratio $\min(\mathrm{recalls})/\max(\mathrm{recalls})$ measure instead whether the classifier serves both classes. The acceptance criterion of this study requires a mean per-class recall above 0.6 with a balanced ratio, because an integrity classifier that misses the severe class is operationally useless regardless of its accuracy.
+A classification tree partitions the input space with axis-aligned thresholds and assigns one class to each terminal region \cite{breiman1984cart}. Each root-to-leaf path is a conjunction of interpretable conditions, so a trained tree is simultaneously a classifier and a rule generator. For imbalanced classes, accuracy rewards the majority class; the per-class recall (the fraction of each class recovered) and the recall ratio $\min(\mathrm{recalls})/\max(\mathrm{recalls})$ measure instead whether the classifier serves both classes. 
 
 \subsection{Fuzzy inference with singleton consequents}
 
-A fuzzy inference system evaluates a set of IF--THEN rules whose conditions hold to a degree between 0 and 1 given by membership functions \cite{zadeh1965fuzzy,mamdani1975experiment}. The firing strength of a rule is the minimum membership of its conditions. With singleton consequents $c_r$, the defuzzified output is the weighted average
+A fuzzy inference system evaluates a set of IF--THEN rules whose conditions hold to a degree between 0 and 1 given by membership functions \cite{zadeh1965fuzzy,mamdani1975experiment}. The firing strength of a rule is the minimum membership of its conditions. With singleton consequents $c_r$, the defuzzified output is the weighted average.
 \begin{equation}
   \hat{v}(\mathbf{x}) =
   \frac{\sum_{r} w_r(\mathbf{x})\, c_r}{\sum_{r} w_r(\mathbf{x})},
