@@ -1,44 +1,9 @@
-This study developed and validated a strategy that converts binomial
-decision trees at the normative severity limits into an auditable
-fuzzy estimator of the corrosion rate for reduced, imbalanced field
-databases.
+This study developed and validated a strategy that converts binomial decision trees at the normative severity limits into an auditable fuzzy estimator of the corrosion rate for reduced, imbalanced field databases.
 
-A record-level leakage audit preceded the modeling and proved
-decisive: a calculated thickness-loss column reproduced the reported
-target exactly for 76.5\% of the records, and rank correlation alone
-did not expose the identity. The audit excluded that column, its
-measurement ingredients, and the failure flag, so every reported
-number reflects prediction instead of reproduction.
+A record-level leakage audit preceded the modeling and proved decisive: a calculated thickness-loss column reproduced the reported target exactly for 76.5\% of the records, and rank correlation alone did not expose the identity. The audit excluded that column, its measurement ingredients, and the failure flag, so every reported number reflects prediction instead of reproduction.
 
-The classification layer satisfied the normative acceptance condition
-under a nested cross-validation protocol that confines every selection
-step to inner folds: out-of-fold mean per-class recalls of 0.710 at
-the 2 [mpy] limit and 0.808 at the 8 [mpy] limit, with recall ratios
-of 0.83 and 0.99, on the audited internal-corrosion database of 897
-records. The trees organize the fleet by its service time, geometry,
-and gas duty, and isolate the severe regime among the young,
-small-diameter, gas-rich lines.
+The classification layer satisfied the normative acceptance condition under a nested cross-validation protocol that confines every selection step to inner folds: out-of-fold mean per-class recalls of 0.710 at the 2 [mpy] limit and 0.808 at the 8 [mpy] limit, with recall ratios of 0.83 and 0.99, on the audited internal-corrosion database of 897 records. The trees organize the fleet by its service time, geometry, and gas duty, and isolate the severe regime among the young, small-diameter, gas-rich lines.
 
-The fuzzy layer converted the twelve extracted rules into a continuous
-estimator through interval membership functions anchored at the tree
-thresholds and consequent singletons bounded to the normative ranges.
-The system reached an out-of-fold $R^2$ of 0.50 and an MAE of
-3.65 [mpy], surpassing linear regression ($R^2 = 0.49$, MAE =
-4.15 [mpy]) and support vector regression on identical folds, with a
-lower error than linear regression in every severity zone. Against
-the decision-tree regressor, which attains a lower global error with
-15--45 unconstrained leaves, the fuzzy system concedes 0.04 units of
-$R^2$ in exchange for a smoother output, normative-bounded
-consequents, and a twelve-rule inference chain whose every
-proposition admits verification against the service history of the
-asset.
+The fuzzy layer converted the twelve extracted rules into a continuous estimator through interval membership functions anchored at the tree thresholds and consequent singletons bounded to the normative ranges. The system reached an out-of-fold $R^2$ of 0.50 and an MAE of 3.65 [mpy], surpassing linear regression ($R^2 = 0.49$, MAE = 4.15 [mpy]) and support vector regression on identical folds, with a lower error than linear regression in every severity zone. Against the decision-tree regressor, which attains a lower global error with 15--45 unconstrained leaves, the fuzzy system concedes 0.04 units of $R^2$ in exchange for a smoother output, normative-bounded consequents, and a twelve-rule inference chain whose every proposition admits verification against the service history of the asset.
 
-The strategy therefore delivers the property that motivated it: a
-numerical corrosion-rate estimator whose complete inference chain ---
-rule, membership, and bounded consequent --- admits expert audit,
-built from the knowledge that the inspection program and the operating
-data already contain. Future work will extend the validation to
-additional asset families, incorporate the expert revision of
-individual thresholds into the deployment cycle, and enrich the
-databases with variables measured independently of the inspection
-that defines the target.
+The strategy therefore delivers the property that motivated it: a numerical corrosion-rate estimator whose complete inference chain --- rule, membership, and bounded consequent --- admits expert audit, built from the knowledge that the inspection program and the operating data already contain. Future work will extend the validation to additional asset families, incorporate the expert revision of individual thresholds into the deployment cycle, and enrich the databases with variables measured independently of the inspection that defines the target.

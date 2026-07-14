@@ -1,82 +1,23 @@
-The strategy executes in four stages --- threshold-wise tree training,
-rule extraction, membership-function construction, and consequent
-tuning --- wrapped by the nested protocol of
-Section~\ref{sec:nested}. Algorithm~\ref{alg:method} summarizes the
-complete procedure.
+The strategy executes in four stages --- threshold-wise tree training, rule extraction, membership-function construction, and consequent tuning --- wrapped by the nested protocol of Section~\ref{sec:nested}. Algorithm~\ref{alg:method} summarizes the complete procedure.
 
 \input{psseudocode/method}
 
 \subsection{Binomial trees at the normative limits}
 
-One binomial decision tree per normative limit provides the
-classification backbone: $T_2$ answers whether the rate exceeds
-2 [mpy] and $T_8$ whether it exceeds 8 [mpy]. Both use balanced class
-weights. The hyperparameters --- depth (3--5), minimum leaf size
-(3--10), cost-complexity pruning, and the leaf probability threshold
-$\tau \in \{0.4, 0.5, 0.6\}$ --- compete in the inner folds under the
-criterion mean recall $+\ 0.5 \times$ recall ratio, which targets the
-acceptance condition of the application instead of accuracy.
+One binomial decision tree per normative limit provides the classification backbone: $T_2$ answers whether the rate exceeds 2 [mpy] and $T_8$ whether it exceeds 8 [mpy]. Both use balanced class weights. The hyperparameters --- depth (3--5), minimum leaf size (3--10), cost-complexity pruning, and the leaf probability threshold $\tau \in \{0.4, 0.5, 0.6\}$ --- compete in the inner folds under the criterion mean recall $+\ 0.5 \times$ recall ratio, which targets the acceptance condition of the application instead of accuracy.
 
 \subsection{Rule extraction}
 
-Each root-to-leaf path is a conjunction of threshold conditions.
-Sibling leaves of the same class merge recursively, because their
-split does not change the decision; the diagrams of the deployed trees
-therefore match the rulebase one-to-one. The extraction assigns the
-negative paths of $T_2$ to the consequent \emph{low}, the positive
-paths of $T_2$ to \emph{mid}, and the positive paths of $T_8$ to
-\emph{high}. Thresholds of one variable that differ by less than 1\%
-of its robust range (1st--99th percentile) merge into one value, and
-the conditions of each rule simplify to a single interval per
-variable. Because the positive region of $T_2$ contains the severe
-region, every \emph{mid} rule carries the ordinal exclusion \emph{AND
-NOT (severe conditions)}, implemented as
-$w \leftarrow \min(w, 1 - \max w_{\mathrm{high}})$.
+Each root-to-leaf path is a conjunction of threshold conditions. Sibling leaves of the same class merge recursively, because their split does not change the decision; the diagrams of the deployed trees therefore match the rulebase one-to-one. The extraction assigns the negative paths of $T_2$ to the consequent \emph{low}, the positive paths of $T_2$ to \emph{mid}, and the positive paths of $T_8$ to \emph{high}. Thresholds of one variable that differ by less than 1\% of its robust range (1st--99th percentile) merge into one value, and the conditions of each rule simplify to a single interval per variable. Because the positive region of $T_2$ contains the severe region, every \emph{mid} rule carries the ordinal exclusion \emph{AND NOT (severe conditions)}, implemented as $w \leftarrow \min(w, 1 - \max w_{\mathrm{high}})$.
 
 \subsection{Interval membership functions}
 
-For each variable used by the rulebase, its sorted tree thresholds
-$t_1 < \dots < t_k$ partition the observed range into $k+1$ intervals,
-and each interval defines one linguistic term. The term membership is
-the minimum of two logistic shoulders: a rising shoulder anchored at
-the lower threshold and a falling shoulder anchored at the upper
-threshold. Each shoulder crosses 0.5 exactly at its threshold, which
-preserves the correspondence between the tree partition and the fuzzy
-partition. The transition width equals the distance from the threshold
-to the median of the training data inside the interval, multiplied by
-a scale factor selected in the inner folds
-($s \in \{0.03, 0.1\}$); widths remain bounded by the robust span
-of the variable so that outliers cannot distort the shape. A tree
-condition $x \leq t_j$ maps to the maximum membership of the terms
-left of $t_j$, and $x > t_j$ to the maximum of the terms right of it.
+For each variable used by the rulebase, its sorted tree thresholds $t_1 < \dots < t_k$ partition the observed range into $k+1$ intervals, and each interval defines one linguistic term. The term membership is the minimum of two logistic shoulders: a rising shoulder anchored at the lower threshold and a falling shoulder anchored at the upper threshold. Each shoulder crosses 0.5 exactly at its threshold, which preserves the correspondence between the tree partition and the fuzzy partition. The transition width equals the distance from the threshold to the median of the training data inside the interval, multiplied by a scale factor selected in the inner folds ($s \in \{0.03, 0.1\}$); widths remain bounded by the robust span of the variable so that outliers cannot distort the shape. A tree condition $x \leq t_j$ maps to the maximum membership of the terms left of $t_j$, and $x > t_j$ to the maximum of the terms right of it.
 
 \subsection{Consequent tuning and inference}
 
-Each rule receives a singleton consequent $c_r$ [mpy], initialized at
-the median of the training records of its class and then adjusted by
-box-constrained least squares on the normalized activation matrix:
-$c_r$ must remain inside the normative range of its class (low:
-$[0,2]$; mid: $[2,8]$; high: $[8, v_{\max}]$), with a regularization
-$\lambda \in \{0.3, 1.0\}$, selected in the inner folds, that pulls
-each consequent toward its class median. The constraint replaces the
-manual support adjustment of classical fuzzy design with an auditable,
-norm-consistent optimization: the expert reviews the tuned supports
-knowing that no rule can speak outside its severity range. For the
-numeric layer, the inner loop also chooses the rule-source trees among
-the recall-selected ones and two deeper variants (depth 6--7): finer
-partitions can carry additional regression signal, while the reported
-classification always comes from the recall-selected trees. Inference
-follows Eq.~(\ref{eq:fis}); when no rule fires, the system returns
-the training median.
+Each rule receives a singleton consequent $c_r$ [mpy], initialized at the median of the training records of its class and then adjusted by box-constrained least squares on the normalized activation matrix: $c_r$ must remain inside the normative range of its class (low: $[0,2]$; mid: $[2,8]$; high: $[8, v_{\max}]$), with a regularization $\lambda \in \{0.3, 1.0\}$, selected in the inner folds, that pulls each consequent toward its class median. The constraint replaces the manual support adjustment of classical fuzzy design with an auditable, norm-consistent optimization: the expert reviews the tuned supports knowing that no rule can speak outside its severity range. For the numeric layer, the inner loop also chooses the rule-source trees among the recall-selected ones and two deeper variants (depth 6--7): finer partitions can carry additional regression signal, while the reported classification always comes from the recall-selected trees. Inference follows Eq.~(\ref{eq:fis}); when no rule fires, the system returns the training median.
 
 \subsection{Benchmarks}
 
-Three regression methods suited to reduced databases compete on the
-identical outer folds: linear regression, a decision-tree regressor
-(depth 3--6, leaf size 3--10, selected in inner folds), and support
-vector regression ($C \in \{1, 10, 100\}$,
-$\epsilon \in \{0.1, 1.0\}$). Ensemble regressors with large parameter
-counts remain outside the comparison because the reduced size of the
-database raises their overfitting risk and their predictions do not
-admit rule-level audit. Every benchmark uses median imputation and
-standardization fitted inside the training folds.
+Three regression methods suited to reduced databases compete on the identical outer folds: linear regression, a decision-tree regressor (depth 3--6, leaf size 3--10, selected in inner folds), and support vector regression ($C \in \{1, 10, 100\}$, $\epsilon \in \{0.1, 1.0\}$). Ensemble regressors with large parameter counts remain outside the comparison because the reduced size of the database raises their overfitting risk and their predictions do not admit rule-level audit. Every benchmark uses median imputation and standardization fitted inside the training folds. 
