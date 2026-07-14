@@ -1,0 +1,88 @@
+\subsection{Dataset and variables}
+
+The study uses an internal-corrosion database from a producing oil
+field: 903 raw records of measured corrosion rate together with the
+operating conditions, the produced-water chemistry, the production
+rates, and the service time of each monitoring point. Data
+preparation removed six records with physically invalid negative
+rates and the columns identified by the leakage audit of
+Section~\ref{sec:vmod}, leaving 897 records and 31 candidate
+variables. Missing entries received the training-fold median inside
+each cross-validation fold.
+
+Table~\ref{tab:features} describes every variable considered with its
+physical meaning, unit, and descriptive statistics. The set covers the
+CO$_2$-corrosion driving forces ($p_{\mathrm{CO_2}}$, $y_{\mathrm{CO_2}}$,
+$T$, $P$, pH), the water chemistry that controls scaling and
+conductivity ($[\mathrm{HCO_3^-}]$, $[\mathrm{Ca^{2+}}]$,
+$[\mathrm{Cl^-}]$, $\sigma$, TDS, Alk), the hydrodynamic and
+production variables that control wall shear and phase wetting ($u$,
+$Q_w$, $Q_o$, $Q_g$, FP), the solids content associated with
+under-deposit attack (TSS), and the service time $t_s$, which is
+fixed at installation and therefore known before any inspection.
+
+\input{tables/feature_stats}
+
+\subsection{Leakage audit and excluded variables}
+\label{sec:vmod}
+
+The raw database carries a column of calculated corrosion rate,
+obtained from the inspection record of each monitoring point as the
+average thickness-loss rate over the service life,
+\begin{equation}
+  v_{\mathrm{calc}} = \frac{(e - e_{\min})}{t_s}
+                      \cdot \frac{1000}{25.4},
+  \label{eq:vmod}
+\end{equation}
+where $e$ [mm] is the reference wall thickness, $e_{\min}$ [mm] the
+minimum wall thickness measured at the point, $t_s$ [yr] the service
+time, and the factor $1000/25.4$ converts [mm/yr] to [mpy]. A
+record-level audit against the reported target showed that
+$v_{\mathrm{calc}}$ equals the reported rate exactly for 76.5\% of the
+records and for 97.8\% of the failure records: for most of the
+database, the reported rate was produced with the same thickness-loss
+formula. Any model that receives $v_{\mathrm{calc}}$ therefore
+receives a near-copy of its own target, and its evaluation measures
+reproduction instead of prediction. The audit is a necessary step of
+the strategy: rank correlation alone did not expose the identity
+(Spearman 0.89 with Pearson 0.15, distorted by unit artifacts at the
+tails), while the record-level comparison did.
+
+The study consequently excludes from the candidate variables:
+$v_{\mathrm{calc}}$ itself; the minimum thickness $e_{\min}$, which
+requires the same inspection that defines the target; the wear and
+remaining-life columns derived from them; and the failure flag, which
+labels the record itself as a failure event --- an outcome unknown at
+prediction time. The service time $t_s$ remains: it is fixed at
+installation, known before any measurement campaign, and enters as a
+regular covariate of exposure.
+
+\subsection{Normative segmentation and target treatment}
+
+The normative limits $\{2, 8\}$ [mpy] partition the target into three
+classes: low $(0,2]$, medium $(2,8]$, and high $(>8)$.
+Table~\ref{tab:classes} reports the class distribution and
+Figure~\ref{fig:hist} the target histogram. For the regression task
+the target saturates at 20 [mpy], equal to 2.5 times the highest
+normative limit: above this level every integrity decision is
+identical (immediate intervention), so prediction error beyond it
+carries no operational meaning. The saturation affects 176 records
+(19.6\%). A variance analysis motivates this treatment: on the raw
+target, a hypothetical perfect three-class predictor mapped to class
+medians cannot exceed a coefficient of determination of 0.46, because
+a small number of extreme rates (up to 322 [mpy]) dominates the total
+variance. Classification remains unaffected, since both normative
+limits lie far below the saturation level. Every model in the study,
+including the benchmarks, trains and evaluates on the saturated
+target.
+
+\input{tables/class_distribution}
+
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/hist_target.pdf}
+  \caption{Distribution of the measured corrosion rate after
+    saturation. Dashed lines mark the normative limits at 2 [mpy] and
+    8 [mpy]; the solid line marks the saturation level at 20 [mpy].}
+  \label{fig:hist}
+\end{figure}

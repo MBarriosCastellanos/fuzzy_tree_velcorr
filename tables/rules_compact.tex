@@ -1,0 +1,31 @@
+\begin{table}[htb!]
+\centering
+\footnotesize
+%\setlength{\tabcolsep}{4pt}
+\caption{Deployed rulebase: antecedents extracted from the binomial trees (physics nomenclature), tuned consequent singletons $c_r$ and contribution share of each rule to the output within its own severity zone.}
+\label{tab:rules}
+\begin{tabularx}{0.45\textwidth}{@{}lXrr@{}}
+\toprule
+Rule & Antecedent & $c_r$ [mpy] & Contrib. [\%] \\
+\midrule
+\midrule
+\multicolumn{4}{@{}l}{\emph{Consequent: low}} \\
+R1 & $t_s \leq 14.4 \wedge u \leq 3.91 \wedge D_e > 3.25$ & 2.00 & 24.3 \\
+R2 & $t_s > 14.4 \wedge Q_g \leq 69.3$ & 1.22 & 46.1 \\
+R3 & $t_s > 14.4 \wedge Q_g > 69.3 \wedge D_e > 6.31$ & 2.00 & 4.9 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Consequent: mid }} \\ %(each rule also carries the exclusion $\neg S$ of the severe region)
+R4 & $t_s \leq 14.4 \wedge u \leq 3.91 \wedge D_e \leq 3.25$ & 7.09 & 0.0 \\
+R5 & $t_s \leq 14.4 \wedge u > 3.91$ & 6.03 & 22.4 \\
+R6 & $t_s > 14.4 \wedge Q_g > 69.3 \wedge D_e \leq 6.31$ & 6.19 & 3.9 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Consequent: high}} \\
+R7 & $t_s \leq 11.1 \wedge D_e \leq 3.25$ & 19.90 & 21.5 \\
+R8 & $t_s \leq 3.85 \wedge D_e > 3.25 \wedge e \leq 5.51$ & 16.71 & 7.4 \\
+R9 & $t_s \leq 11.1 \wedge D_e > 3.25 \wedge e > 5.51$ & 14.51 & 34.6 \\
+R10 & $t_s > 11.1 \wedge Q_g \leq 69.3 \wedge D_e \leq 3.25$ & 19.65 & 1.7 \\
+R11 & $t_s > 11.1 \wedge t_s \leq 27 \wedge Q_g > 69.3 \wedge D_e \leq 6.31$ & 12.38 & 10.8 \\
+R12 & $t_s > 27 \wedge Q_g > 69.3 \wedge [\mathrm{HCO_3^-}] \leq 2.99$ & 9.74 & 0.6 \\
+\bottomrule
+\end{tabularx}
+\end{table}

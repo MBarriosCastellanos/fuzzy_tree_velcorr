@@ -1,0 +1,70 @@
+% Document Class =========================================================
+  %\documentclass[final,3p,times]{elsarticle}   % one column
+  \documentclass[final,5p,times]{elsarticle}    % two column
+  % Use the options 1p,two-column; 3p; 3p,two-column; 5p; or 5p,two-column
+    % for a journal layout: Use the option review to obtain double
+    % line spacing
+% Preamble ===============================================================
+  \input{preamble.tex}
+  \journal{~}
+
+\begin{document}
+
+  \hypersetup{citecolor=teal, linkcolor=blue, urlcolor=gray, breaklinks=true}
+  %\linenumbers
+
+  \begin{frontmatter}
+
+    \title{Corrosion-rate prediction strategy based on interpretable
+      decision trees and fuzzy inference for reduced and imbalanced
+      field databases}
+
+    % Authors intentionally left blank.
+    \author[1]{Mauricio Barrios Castellanos}
+    \ead{mauricio.bc.89@gmail.com}
+
+    \author[1]{Maria Camila Granados-Giraldo}
+    \ead{mgranados@corrosioncic.com}
+
+    \author[1]{Jhon Padilla}
+    \ead{jpadilla@corrosioncic.com}
+
+    \author[1]{Daniel Felipe Bernal-mejia}
+    \ead{jpadilla@corrosioncic.com}
+
+    \author[1]{Genis Andrés Castillo-Villamizar}
+    \ead{jpadilla@corrosioncic.com}
+
+
+    \address[1]{Corporación para la Investigación de la Corroción (CIC)}
+
+    \begin{abstract}
+      \input{sections/abstract.tex}
+    \end{abstract}
+
+    \begin{keyword}
+      Corrosion rate \sep
+      Decision trees \sep
+      Fuzzy inference \sep
+      Interpretable machine learning \sep
+      Asset integrity.
+    \end{keyword}
+
+  \end{frontmatter}
+
+  \section{Introduction} %================================================
+    \input{sections/1_int.tex}
+  \section{Field data and normative segmentation} \label{sec:data} %======
+    \input{sections/2_dat.tex}
+  \section{Theoretical background}    \label{sec:theory} %================
+    \input{sections/3_the.tex}
+  \section{Methodology}               \label{sec:method} %================
+    \input{sections/4_met.tex}
+  \section{Results and Discussion}    \label{sec:results} %===============
+    \input{sections/5_res.tex}
+  \section{Conclusions}               \label{sec:conclu} %================
+    \input{sections/6_con.tex}
+
+    \bibliography{references}
+
+\end{document}

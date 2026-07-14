@@ -1,0 +1,33 @@
+symbol,latex,meaning,unit,n_missing,min,median,mean,max
+v,$v$,measured corrosion rate,mpy,0,0.0,5.258261954056584,8.377887398108813,20.0
+t_s,$t_s$,service time of the monitoring point,yr,0,-0.0219028062970568,9.83,11.811001932684254,38.14246575342466
+pCO2,$p_{\mathrm{CO_2}}$,CO$_2$ partial pressure,psig,13,0.0,12.036,17.179548662437163,103.4418
+yCO2,$y_{\mathrm{CO_2}}$,CO$_2$ gas mole fraction,--,13,0.0,16.0,22.73702998995351,52.5
+yCH4,$y_{\mathrm{CH_4}}$,methane gas mole fraction,--,15,0.0,46.7,45.63362498921728,87.7
+yN2,$y_{\mathrm{N_2}}$,nitrogen gas mole fraction,--,15,-6.320000000000011,13.2,16.969115000287918,78.4
+u,$u$,production fluid velocity,ft/s,31,0.0,4.573217444631631,5.2868869171030815,32.48599618063727
+P,$P$,operating pressure,psig,0,0.0,66.0,72.16267558528428,231.0
+T,$T$,operating temperature,$^{\circ}$F,0,0.0,247.87,233.36143812709034,250.0
+pH,pH,produced-water pH,--,14,0.2299999999999995,6.85,6.929557839861419,7.88
+sigma,$\sigma$,water electrical conductivity,$\mu$S/cm,13,-325.0,528.835,603.4265980078783,5780.0
+Cl,$[\mathrm{Cl^-}]$,chloride concentration,ppm,14,-19.0,9.957,30.7240880333915,752.47756
+Na,$[\mathrm{Na^+}]$,sodium concentration,ppm,15,-28.3,68.7,79.52746510284067,302.012
+Ca,$[\mathrm{Ca^{2+}}]$,calcium concentration,ppm,14,0.072,11.6,16.170365754465426,116.62
+Mg,$[\mathrm{Mg^{2+}}]$,magnesium concentration,ppm,14,0.0,4.9,4.537454936542139,12.304
+Ba,$[\mathrm{Ba^{2+}}]$,barium concentration,ppm,14,0.0,0.23,0.41513984894540895,5.27
+Sr,$[\mathrm{Sr^{2+}}]$,strontium concentration,ppm,14,0.0,0.227,4.879476559006603,752.4775599999999
+Fe,$[\mathrm{Fe}]$,total dissolved iron,ppm,14,-8.1,0.984,2.8717191531891078,17.4
+SO4,$[\mathrm{SO_4^{2-}}]$,sulfate concentration,ppm,14,-2.73,7.4132,25.87060673180067,496.0
+HCO3,$[\mathrm{HCO_3^-}]$,bicarbonate concentration,meq/L,14,1.957,4.0,109.67952949662704,361.0
+Alk,Alk,total alkalinity,ppm CaCO$_3$,14,-4.0,219.0,206.96242571558918,580.0
+TH,TH,total hardness,ppm CaCO$_3$,14,0.0,27.8,43.31789920447696,291.208
+TSS,TSS,total suspended solids,ppm,14,-123.0,64.0,76.1503221955351,437.0
+TDS,TDS,total dissolved solids,ppm,14,248.0,346.7,384.94939994644403,2025.1
+Qw,$Q_w$,water production rate,BWPD,0,0.0,6326.91,8479.064752199114,77937.50559000002
+Qo,$Q_o$,oil production rate,BOPD,0,0.0,68.18625000000065,89.21791683273037,980.967099999998
+Qg,$Q_g$,gas production rate,MMSCFD,0,0.0,3.2867523000000442e-09,786.4169453763972,29463.5
+FP,FP,flow-pattern class,--,13,0.0,2.0,1.756787330316742,3.0
+D,$D$,nominal pipe diameter,in,0,3.0,4.0,4.432552954292085,18.0
+Di,$D_i$,internal pipe diameter,in,43,2.067,3.068,3.1600128805620606,17.25
+De,$D_e$,external pipe diameter,in,0,2.0,4.5,4.6836677814938685,18.0
+e,$e$,measured wall thickness,mm,0,2.87,5.49,5.748651059085841,9.53

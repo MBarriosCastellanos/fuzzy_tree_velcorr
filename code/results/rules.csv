@@ -1,0 +1,13 @@
+rule,level,consequent_mpy,n_conditions,antecedent_latex,antecedent_plain,contrib_pct,zone_contrib_pct
+R1,low,2.0,3,t_s \leq 14.4 \wedge u \leq 3.91 \wedge D_e > 3.25,t_s <= 14.4 AND u <= 3.91 AND De > 3.25,21.8,24.3
+R2,low,1.22,2,t_s > 14.4 \wedge Q_g \leq 69.3,t_s > 14.4 AND Qg <= 69.3,19.1,46.1
+R3,low,2.0,3,t_s > 14.4 \wedge Q_g > 69.3 \wedge D_e > 6.31,t_s > 14.4 AND Qg > 69.3 AND De > 6.31,2.5,4.9
+R4,mid,7.09,3,t_s \leq 14.4 \wedge u \leq 3.91 \wedge D_e \leq 3.25,t_s <= 14.4 AND u <= 3.91 AND De <= 3.25,0.0,0.0
+R5,mid,6.03,2,t_s \leq 14.4 \wedge u > 3.91,t_s <= 14.4 AND u > 3.91,13.0,22.4
+R6,mid,6.19,3,t_s > 14.4 \wedge Q_g > 69.3 \wedge D_e \leq 6.31,t_s > 14.4 AND Qg > 69.3 AND De <= 6.31,2.6,3.9
+R7,high,19.9,2,t_s \leq 11.1 \wedge D_e \leq 3.25,t_s <= 11.1 AND De <= 3.25,8.8,21.5
+R8,high,16.71,3,t_s \leq 3.85 \wedge D_e > 3.25 \wedge e \leq 5.51,t_s <= 3.85 AND De > 3.25 AND e <= 5.51,3.7,7.4
+R9,high,14.51,3,t_s \leq 11.1 \wedge D_e > 3.25 \wedge e > 5.51,t_s <= 11.1 AND De > 3.25 AND e > 5.51,19.9,34.6
+R10,high,19.65,3,t_s > 11.1 \wedge Q_g \leq 69.3 \wedge D_e \leq 3.25,t_s > 11.1 AND Qg <= 69.3 AND De <= 3.25,0.7,1.7
+R11,high,12.38,4,t_s > 11.1 \wedge t_s \leq 27 \wedge Q_g > 69.3 \wedge D_e \leq 6.31,t_s > 11.1 AND t_s <= 27 AND Qg > 69.3 AND De <= 6.31,7.1,10.8
+R12,high,9.74,3,t_s > 27 \wedge Q_g > 69.3 \wedge [\mathrm{HCO_3^-}] \leq 2.99,t_s > 27 AND Qg > 69.3 AND HCO3 <= 2.99,0.7,0.6

@@ -1,0 +1,3 @@
+limit_mpy,mean_recall,ratio_recall,recall_below,recall_above,accuracy
+2.0,0.71,0.834,0.646,0.774,0.742
+8.0,0.808,0.986,0.803,0.814,0.807

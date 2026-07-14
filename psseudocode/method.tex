@@ -1,0 +1,40 @@
+\begin{algorithm}[htbp]
+  \caption{Tree-rule fuzzy estimation of the corrosion rate}
+  \label{alg:method}
+  \KwIn{records $(\mathbf{x}_i, v_i)$, normative limits $L = \{2, 8\}$
+    [mpy], saturation level $v_{\max} = 20$ [mpy]}
+  \KwOut{fuzzy estimator $\hat{v}(\mathbf{x})$; out-of-fold metrics}
+  saturate the target: $v_i \leftarrow \min(v_i, v_{\max})$\;
+  \ForEach{outer fold $(\mathcal{T}, \mathcal{E})$ of the stratified
+    5-fold split}{
+    \tcp{all selection inside the training fold $\mathcal{T}$}
+    select depth, leaf size, pruning and leaf threshold of each tree
+    by inner CV maximizing mean recall\;
+    fit binomial trees: $T_2$ for $v > 2$, $T_8$ for $v > 8$ on
+    $\mathcal{T}$\;
+    collapse sibling leaves of equal class; extract root-to-leaf
+    paths as rules: $T_2^{-} \to$ low, $T_2^{+} \to$ mid,
+    $T_8^{+} \to$ high\;
+    merge near-duplicate thresholds; simplify each rule to one
+    interval per variable\;
+    select by inner CV (MAE) the numeric-layer configuration:
+    rule-source trees (recall-selected or deeper variants),
+    transition-width factor, and consequent regularization\;
+    \ForEach{variable used by the rules}{
+      partition its range at the tree thresholds\;
+      build one interval membership per region: sigmoid shoulders
+      crossing $0.5$ at the thresholds, width from the distance
+      threshold--median of the training data, scaled by the selected
+      factor\;
+    }
+    initialize each consequent $c_r$ at the median of its class;
+    adjust all $c_r$ by regularized least squares on the normalized
+    activations, bounded to the normative range of each rule\;
+    predict $\mathcal{E}$ with Eq.~(\ref{eq:fis}), applying to the
+    mid rules the ordinal exclusion
+    $w \leftarrow \min(w,\, 1 - \max w_{\mathrm{high}})$\;
+  }
+  report metrics over the union of the outer test folds\;
+  refit the complete chain on all records for deployment (artifacts
+  only)\;
+\end{algorithm}

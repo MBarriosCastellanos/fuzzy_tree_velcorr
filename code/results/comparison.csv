@@ -1,0 +1,5 @@
+method,mae_oof,mae_min,mae_max,r2_oof,r2_min,r2_max,recall_high
+Proposed FIS,3.647,3.218,4.207,0.498,0.382,0.598,0.775
+Linear regression,4.147,3.869,4.468,0.492,0.438,0.54,0.89
+Decision tree,3.339,2.987,3.785,0.54,0.468,0.585,0.784
+SVR,3.824,3.428,4.265,0.486,0.419,0.542,0.797

@@ -1,0 +1,81 @@
+%=================================== Document ==================================
+
+%\usepackage[top=2.5cm, bottom=2cm, right=2cm, left=2.5cm]{geometry}
+%\usepackage[portuges, brazilian]{babel} % hibernation Portuguese
+\usepackage[utf8]{inputenc}             % Accentuation
+%\usepackage[T1]{fontenc}
+%\usepackage{setspace}                   % Change line space 
+%  \onehalfspacing %\singlespacing  %\doublespacing
+%\usepackage{indentfirst}                % indent first line
+\usepackage{lineno,hyperref}            % Hipper-link
+\hypersetup{colorlinks=true,            % Delete Box ref
+  breaklinks=true, pdfauthor={Name}}    % breaking  links
+\usepackage{xcolor}                     % Color Hyperref
+\usepackage{etoolbox}                   % broke lines in bibliography
+\hbadness 10000
+\tolerance 10000
+% \usepackage{lipsum}                     % Bibliography style
+\usepackage{framed}                     % Box for Nomenclature
+%\usepackage{titlesec}                   % change tittle configurations 
+%  \titleformat
+%    {\chapter}{\normalfont\LARGE \selectfont \bfseries}  % Format
+%    {\thechapter}{1ex plus 1ex}{}
+%  \titlespacing*
+%    {\chapter}                          % command
+%    {0pt}                               % left
+%    {0.5\baselineskip}                  % before
+%    {0.5\baselineskip}                  % after
+%  \setcounter{tocdepth}{3}              % deep and subsections
+%  \setcounter{secnumdepth}{3}           % sections numerations
+%  \usepackage{emptypage}                  % empty page number
+
+%================================== Equations ===================================
+
+\usepackage{amsmath}
+%\usepackage{algorithm}
+%\usepackage{algorithm2e}
+\usepackage{algpseudocode}
+\usepackage[linesnumbered, ruled, vlined, onelanguage]{algorithm2e}
+\usepackage{amssymb}
+
+%==================================== Tables ====================================
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{pbox}                      % Pbox for tables
+%\usepackage{array}
+\usepackage{multirow}                   % multi rows
+\usepackage{multicol}                   % multi columns
+\usepackage[justification=centering]{caption} % Centering table caption
+\usepackage{threeparttable}
+
+%==================================== Images ====================================
+
+\usepackage{graphicx}                   % cut images
+\usepackage{float}                      % Make the images float
+\usepackage{caption}                    % Sub-Plots
+\usepackage{subcaption}                 % Sub-Plots
+\usepackage{transparent}
+%\usepackage{pdflscape}          % Rotate Figure
+
+\usepackage{pgf}
+
+%============================== Literature review ===============================
+
+%\usepackage{cite}
+%\usepackage{pdfpages}                   % Insert pdf pages
+
+%========================= Elsevier bibliography styles =========================
+
+%\modulolinenumbers[5]
+%\bibliographystyle{styles/model1-num-names}   % Numbered
+%\bibliographystyle{styles/model1a-num-names}  % Numbered without titles
+%\bibliographystyle{styles/model2-names.bst}\biboptions{authoryear}  % Harvard
+%----------------------  Vancouver numbered and name/year -----------------------
+%\usepackage{numcompress}\bibliographystyle{styles/model3-num-names}  %  numbered
+%\usepackage{numcompress}\bibliographystyle{styles/model4-names}\biboptions{authoryear} 
+%-------------------------------------------------------------------------------
+%\bibliographystyle{styles/model5-names}\biboptions{authoryear}      % APA style
+%\usepackage{numcompress}\bibliographystyle{styles/model6-num-names} % AMA style
+\bibliographystyle{styles/elsarticle-num-names}     % `Elsevier LaTeX' style
+\biboptions{numbers,sort&compress}

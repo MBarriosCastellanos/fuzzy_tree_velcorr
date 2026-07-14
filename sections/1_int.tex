@@ -1,0 +1,50 @@
+Internal corrosion governs the residual life of production piping in
+mature oil fields. Integrity programs quantify its progression through
+the corrosion rate $v$, expressed in mils per year [mpy], and classify
+the severity against normative limits: rates up to 2 [mpy] permit
+routine monitoring, rates between 2 [mpy] and 8 [mpy] require
+intensified inspection, and rates above 8 [mpy] demand intervention.
+Field measurement campaigns produce databases with two structural
+difficulties. First, the observations concentrate in the low-severity
+range, so the critical regimes remain under-represented
+\cite{he2009imbalanced}. Second, the number of useful records rarely
+exceeds a few hundred after quality control.
+
+Regression models trained on such data minimize a global error and,
+consequently, underestimate the scarce high-severity observations. The
+resulting predictions bias inspection planning toward the benign
+regimes. Flexible ensemble regressors reduce the global error
+\cite{breiman2001random} but hide the reasoning behind each
+prediction, which conflicts with the audit requirements of integrity
+management \cite{rudin2019stop}; on reduced databases their high
+parameter count also raises the risk of overfitting.
+
+Fuzzy inference systems offer the language that integrity engineers
+already use: severity classes, gradual transitions, and IF--THEN rules
+\cite{zadeh1965fuzzy,mamdani1975experiment}. Their practical
+difficulty lies in the construction of the rulebase and of the
+membership functions, which traditionally depend on manual
+elicitation \cite{guillaume2001designing}. Decision trees resolve this
+difficulty: a tree trained on the normative classes yields an explicit
+partition of the input space whose branches read as rules
+\cite{breiman1984cart}.
+
+This study articulates both elements into a single strategy. Binomial
+decision trees, one per normative limit, provide the classification
+backbone; the tree thresholds define interval membership functions
+whose transition widths follow the training-data distribution; and the
+resulting rulebase feeds a fuzzy inference system whose consequents
+remain bounded to the normative ranges. A nested cross-validation
+protocol confines every selection step to inner folds and eliminates
+the optimistic bias of tune-and-refit procedures
+\cite{varma2006bias,cawley2010overfitting}.
+
+The contributions are: (i) a reproducible procedure that converts
+threshold-wise decision trees into an auditable fuzzy estimator of the
+corrosion rate; (ii) a distribution-based construction of interval
+membership functions with transitions anchored at the tree thresholds;
+(iii) a record-level leakage audit and an evaluation protocol that
+together guarantee leakage-free estimates of generalization for the
+complete chain; and (iv) a comparison on identical folds against
+regression methods suited to reduced databases, including the
+sensitivity to the severe class that drives integrity decisions.

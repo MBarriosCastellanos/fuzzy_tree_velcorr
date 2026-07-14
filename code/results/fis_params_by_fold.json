@@ -1,0 +1,68 @@
+[
+  {
+    "trees": {
+      "th2": {
+        "max_depth": 5,
+        "min_samples_leaf": 5,
+        "ccp_alpha": 0.0,
+        "leaf_thr": 0.5
+      },
+      "th8": {
+        "max_depth": 4,
+        "min_samples_leaf": 3,
+        "ccp_alpha": 0.0,
+        "leaf_thr": 0.6
+      }
+    },
+    "shoulder_scale": 0.03,
+    "reg_lambda": 0.3
+  },
+  {
+    "trees": {
+      "max_depth": 6,
+      "min_samples_leaf": 5,
+      "ccp_alpha": 0.0,
+      "leaf_thr": 0.5
+    },
+    "shoulder_scale": 0.03,
+    "reg_lambda": 0.3
+  },
+  {
+    "trees": {
+      "max_depth": 7,
+      "min_samples_leaf": 10,
+      "ccp_alpha": 0.0,
+      "leaf_thr": 0.5
+    },
+    "shoulder_scale": 0.03,
+    "reg_lambda": 0.3
+  },
+  {
+    "trees": {
+      "th2": {
+        "max_depth": 3,
+        "min_samples_leaf": 5,
+        "ccp_alpha": 0.0,
+        "leaf_thr": 0.4
+      },
+      "th8": {
+        "max_depth": 4,
+        "min_samples_leaf": 5,
+        "ccp_alpha": 0.0,
+        "leaf_thr": 0.6
+      }
+    },
+    "shoulder_scale": 0.03,
+    "reg_lambda": 0.3
+  },
+  {
+    "trees": {
+      "max_depth": 7,
+      "min_samples_leaf": 10,
+      "ccp_alpha": 0.0,
+      "leaf_thr": 0.5
+    },
+    "shoulder_scale": 0.03,
+    "reg_lambda": 0.3
+  }
+]
